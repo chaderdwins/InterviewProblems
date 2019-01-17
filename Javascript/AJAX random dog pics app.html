@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+</head>
+<body>
+	<div class="ui center aligned container">
+		<h1 class="ui huge header">Welcome to Get Random Dog Pics!</h1>
+		<div class="ui container">
+			<button id="btn" class="ui centered button">
+  				Get Random Dog
+			</button>
+		</div>
+		<p></p>
+		<div class="ui container">
+			<img id="photo" class="ui medium centered image"></img>
+		</div>
+		
+	</div>
+<script type="text/javascript">
+	var btn = document.querySelector("#btn");
+
+	var img = document.querySelector("#photo")
+	//listen for clicks
+	btn.addEventListener("click",function(){
+		//make the request
+		var XHR = new XMLHttpRequest();
+
+		XHR.onreadystatechange = function(){
+			if(XHR.readyState == 4 && XHR.status == 200){
+				var url = JSON.parse(XHR.responseText).message;
+				img.src = url;
+			}
+		}
+		XHR.open("GET", "https://dog.ceo/api/breeds/image/random");
+		XHR.send();
+	});
+</script>
+</body>
+</html>

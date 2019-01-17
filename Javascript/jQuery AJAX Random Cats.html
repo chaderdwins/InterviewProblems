@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+	<script
+  		src="https://code.jquery.com/jquery-3.2.1.min.js">		
+  	</script>
+  	
+</head>
+<body>
+<br>
+<h1 class="ui horizontal divider header">Cat Picture Generator</h1>
+<div class="ui center aligned container">
+	<button id="btn" class="ui positive basic button">Get Cat Pic!</button>
+</div>
+<br>
+<div class="ui center aligned container">
+	<img id="img" class="ui medium centered image" src="http://random.cat/i/20110922_hamish.JPG">
+</div>
+
+
+<script type="text/javascript">
+		$("#btn").click(function(){
+			$.getJSON("https://random.cat/meow")
+			.done(cat)
+			.fail(function(){
+				alert("it failed!")
+			})
+
+			function cat(data){
+				$("#img").attr("src", data.file);
+				console.log(data);
+			}
+		});
+</script>
+</body>
+</html>

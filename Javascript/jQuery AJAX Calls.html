@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script
+  		src="https://code.jquery.com/jquery-3.2.1.min.js">		
+  	</script>
+  	
+</head>
+<body>
+
+<button id="btn">BACON</button>
+<p></p>
+
+<script type="text/javascript">
+		$("#btn").click(function(){
+			//$.getJSON("https://baconipsum.com/api/?type=meat-and-filler")
+			$.ajax({ 
+				method: "GET",
+				url: "https://baconipsum.com/api/?type=meat-and-filler",
+				dataType: 'json'
+			})
+			.done(function(data){
+				$("p").text(data[1]);
+				console.log(data);
+			})
+			.fail(function(){
+				alert("it failed!")
+			})
+		});
+</script>
+</body>
+</html>

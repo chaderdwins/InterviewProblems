@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+</head>
+<body>
+	<div class="ui center aligned container">
+		<br>
+		<br>
+		<h1 class="ui horizontal divider header">Current Bitcoin Price:
+		</h1>
+		<div class="ui center aligned container">
+			<h2 id="USD"></h2>
+			<h2 id="GBP"></h2>
+			<h2 id="Euro"></h2>
+		</div>
+		<br>
+		<div class="ui container">
+			<button id="btn" class="ui centered button">
+  				Get Bitcoin Price!
+			</button>
+		</div>
+		<br>
+
+		
+	</div>
+<script type="text/javascript">
+	var btn = document.querySelector("#btn");
+
+	var USD = document.querySelector("#USD");
+	var GBP = document.querySelector("#GBP");
+	var Euro = document.querySelector("#Euro");
+	//listen for clicks
+	btn.addEventListener("click",function(){
+		//make the request
+		var XHR = new XMLHttpRequest();
+
+		XHR.onreadystatechange = function(){
+			if(XHR.readyState == 4 && XHR.status == 200){
+				var url = JSON.parse(XHR.responseText).bpi.USD.rate_float;
+				USD.innerText = "$" + " " + url + " " + "USD";
+				GBP.innerText = "£" + " " + url + " " + "GBP";
+				Euro.innerText = "€" + " " + url + " " + "Euros";
+			}
+		}
+		XHR.open("GET", "https://api.coindesk.com/v1/bpi/currentprice.json");
+		XHR.send();
+	});
+</script>
+</body>
+</html>
