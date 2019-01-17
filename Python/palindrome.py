@@ -6,10 +6,12 @@ is_palindrome('robert') # False
 is_palindrome('amanaplanacanalpanama') # True
 '''
 
+
 def is_palindrome(string):
     sting = string.replace(" ", "")
     print(f"Is {sting} a palindrome? Let's find out:")
     return sting == sting[::-1]
+
 
 print(is_palindrome("testing"))
 print(is_palindrome("tacocat"))
