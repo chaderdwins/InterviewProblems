@@ -1,3 +1,5 @@
+#test if a string has all unique characters
+
 import unittest
 #brute force implementation
 # def unique(x):
@@ -22,6 +24,7 @@ def unique(x):
             d[char] = 1
     return True
 
+#unit testing for this function
 class Test(unittest.TestCase):
     dataT = [('abcd'), ('s4fad'), ('')]
     dataF = [('23ds2'), ('hb 627jh=j ()')]
