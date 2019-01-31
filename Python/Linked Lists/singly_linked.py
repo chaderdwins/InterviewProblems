@@ -27,7 +27,10 @@ class Node:
 class LinkedList:
     def __init__(self, root=None):
         self.root = root
-        self.size = 0 #this variable tracks the size of our linked list
+        if root != None:
+            self.size = 1
+        else:
+            self.size = 0 #this variable tracks the size of our linked list
 
     #this function returns the size of our linked list
     def get_size(self):
