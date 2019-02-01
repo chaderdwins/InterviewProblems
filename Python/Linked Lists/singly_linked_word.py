@@ -79,7 +79,7 @@ class LinkedList:
                 start = start.getNext()
 
     # removes an item from the linked list
-    # needs to check if data is in list-------------------------------------------------------------------
+    # needs to check if data is in list---------------------------------------
     def remove(self, item):
         start = self.head
         previous = None
@@ -142,7 +142,7 @@ class LinkedList:
             del start
             return data
 
-    # returns the index of the given node
+    # returns the index of the current node
     def nodeIndex(self, index):
         start = self.head
         index = int(index)
@@ -167,11 +167,6 @@ class LinkedList:
             start = start.getNext()
 
         return temp
-
-    # clears the linked list
-    def clear(self):
-        self.head = None
-        return True
 
     # deletes and returns a node at the specified index
     def popIndex(self, index):
@@ -224,128 +219,3 @@ class LinkedList:
             temp_node2.setData(temp)
 
             begin_node = begin_node.getNext()
-
-    # returns a sorted copy of the original linked list, w/o modifying the original
-    def sorted(self):
-        start = self.head
-        temp_list = self.copy()
-        temp_list.sort()
-        return temp_list
-
-    # converts the linked list to a list
-    def list(self):
-        start = self.head
-        temp_list = []
-        while start:
-            temp_data = start.getData()
-            temp_list.append(temp_data)
-            start = start.getNext()
-        return temp_list
-
-    # converts linked list to a set
-    def set(self):
-        start = self.head
-        temp_set = set()
-        while start:
-            temp_data = start.getData()
-            if temp_data not in temp_set:
-                temp_set.add(temp_data)
-            start = start.getNext()
-        return temp_set
-
-    # converts the linked list to a string
-    def str(self, seperator=""):
-        start = self.head
-        new_string = ""
-        while start:
-            temp_string = start.getData()
-            new_string += str(temp_string)
-            start = start.getNext()
-
-            # if next node exists only the append seperator
-            if start:
-                new_string += seperator
-
-        return new_string
-
-# creating LinkedList
-myList = LinkedList()
-
-# adding some elements to the start of LinkedList
-myList.insertHead(5)
-myList.insertHead(4)
-myList.insertHead(3)
-myList.insertHead(2)
-myList.insertHead(1)
-
-
-myList.print()
-
-# adding some elements to the End of the LinkedList
-myList.insertTail(12)
-myList.insertTail(13)
-myList.insertTail(3)
-myList.print()
-
-# printing Length
-print(myList.length())
-
-# printing index of an element
-print(myList.index(3))
-
-# printing element at a particular index
-print(myList.nodeIndex(5))
-
-# removing an element
-print(myList.remove(12))
-
-# removing element from a particular index
-print("poppin!")
-myList.popIndex(2)
-
-myList.print()
-
-# printing max and min element
-print(myList.max())
-print(myList.min())
-
-# appending and poping elements
-print(myList.append(31))
-myList.print()
-print(myList.pop())
-myList.print()
-
-# creating a copy of the linked List
-myList2 = myList.copy()
-myList2.print()
-
-# removing all elements from the LinkedList
-myList2.clear()
-myList2.print()
-
-
-# printing a string of elements of the LinkedList
-print(myList.str(","))
-
-# printing count of particular element in the List
-print(myList.count(3))
-
-# making a builtIn List from the LinkedList
-newList = myList.list()
-print(newList)
-
-# making a List from the LinkedList
-newSet = myList.set()
-print(newSet)
-
-# reversing the linkedLkst
-myList.reverse()
-myList.print()
-
-# making a sorted LinkedList out of the Original
-myList3 = myList.sorted()
-myList3.print()
-
-# sorting the LinkedList
-myList.sort()
-myList.print()
