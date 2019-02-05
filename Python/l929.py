@@ -32,11 +32,10 @@ class Solution:
             if '.' in local:
                 local = local.replace('.', '')
 
-            final = local + domain
-            if final in li:
-                continue
-            else:
+            final = local + email[email.index('@'):]
+            if final not in li:
                 li.append(final)
+
         return len(li)
 s = Solution()
 print(s.numUniqueEmails(["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]))
