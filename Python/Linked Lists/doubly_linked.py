@@ -107,3 +107,13 @@ class DoublyLinkedList:
 
         self.length += 1
         return True
+
+    def reverse(self):
+        node = self.head
+        while node != None:
+            next = node.next
+            node.next = node.prev
+            node.prev = next
+            node = next
+        self.head, self.tail = self.tail, self.head
+        return self
