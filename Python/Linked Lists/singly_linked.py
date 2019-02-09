@@ -10,13 +10,13 @@ class LinkedList:
         self.length = 0
 
     def append(self, data):
-        new_node = Node(data)
+        node = Node(data)
         if not self.head:
-            self.head = new_node
+            self.head = node
             self.tail = self.head
         else:
-            self.tail.next = new_node
-            self.tail = new_node
+            self.tail.next = node
+            self.tail = node
         self.length += 1
         return self
 
@@ -39,20 +39,20 @@ class LinkedList:
     def removeHead(self):
         if not self.head:
             return None
-        current_head = self.head
-        self.head = current_head.next
+        current = self.head
+        self.head = current.next
         self.length -= 1
         if self.length == 0:
             self.tail = None
-        return current_head
+        return current
 
     def addHead(self, data):
-        new_node = Node(data)
+        node = Node(data)
         if not self.head:
-            self.head = new_node
+            self.head = node
             self.tail = self.head
-        new_node.next = self.head
-        self.head = new_node
+        node.next = self.head
+        self.head = node
         self.length += 1
         return self
 
@@ -67,9 +67,9 @@ class LinkedList:
         return current
 
     def set(self, index, data):
-        found_node = self.get(index)
-        if found_node:
-            found_node.data = data
+        found = self.get(index)
+        if found:
+            found.data = data
             return True
         return False
 
@@ -80,11 +80,11 @@ class LinkedList:
             return self.append(data)
         if index == 0:
             return self.addHead(data)
-        new_node = Node(data)
+        node = Node(data)
         prev = self.get(index - 1)
         temp = prev.next
-        prev.next = new_node
-        new_node.next = temp
+        prev.next = node
+        node.next = temp
         self.length += 1
         return True
 
@@ -95,9 +95,9 @@ class LinkedList:
             return self.removeHead()
         if index == self.length - 1:
             return self.pop()
-        previous_node = self.get(index - 1)
-        removed = previous_node.next
-        previous_node.next = removed.next
+        prev_node = self.get(index - 1)
+        removed = prev_node.next
+        prev_node.next = removed.next
         self.length -= 1
         return removed
 

@@ -12,6 +12,7 @@ def permutations(word):
     if len(word) == 1:
         return [word]
     perms = permutations(word[1:])
+    print(perms)
     char = word[0]
     result = []
     for perm in perms:
@@ -19,4 +20,4 @@ def permutations(word):
             result.append(perm[:i]+char+perm[i:])
     return result
 
-print(is_word('race'))
+print(is_word('abc'))

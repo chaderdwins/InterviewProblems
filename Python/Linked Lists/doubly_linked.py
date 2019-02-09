@@ -11,54 +11,54 @@ class DoublyLinkedList:
         self.length = 0
 
     def append(self, data):
-        new_node = Node(data)
+        node = Node(data)
         if self.length == 0:
-            self.head = new_node
-            self.tail = new_node
+            self.head = node
+            self.tail = node
         else:
-            self.tail.next = new_node
-            new_node.prev = self.tail
-            self.tail = new_node
+            self.tail.next = node
+            node.prev = self.tail
+            self.tail = node
         self.length += 1
         return self
 
     def pop(self):
         if not self.head:
             return None
-        pop_node = self.tail
+        current = self.tail
         if self.length == 1:
             self.head = None
             self.tail = None
         else:
-            self.tail = pop_node.prev
+            self.tail = current.prev
             self.tail.next = None
-            pop_node.prev = None
+            current.prev = None
         self.length -= 1
-        return pop_node
+        return current
 
     def removeHead(self):
         if self.length == 0:
             return None
-        old_head = self.head
+        current = self.head
         if self.length == 1:
             self.head = None
             self.tail = None
         else:
-            self.head = old_head.next
+            self.head = current.next
             self.head.prev = None
-            old_head.next = None
+            current.next = None
         self.length -= 1
-        return old_head
+        return current
 
     def addHead(self, data):
-        new_node = Node(data)
+        node = Node(data)
         if self.length == 0:
             self.head = None
             self.tail = None
         else:
-            self.head.prev = new_node
-            new_node.next = self.head
-            self.head = new_node
+            self.head.prev = node
+            node.next = self.head
+            self.head = node
         self.length += 1
         return self
 
@@ -82,9 +82,9 @@ class DoublyLinkedList:
         return current
 
     def set(self, index, data):
-        found_node = self.get(index)
-        if found_node != None:
-            found_node.data = data
+        found = self.get(index)
+        if found != None:
+            found.data = data
             return True
         return False
 
@@ -95,15 +95,15 @@ class DoublyLinkedList:
             return self.addHead(data)
         if index == self.length:
             return self.append(data)
-        new_node = Node(data)
-        b4_node = self.get(index-1)
-        after_node = b4_node.next
+        node = Node(data)
+        prev = self.get(index-1)
+        next_node = prev.next
 
-        b4_node.next = new_node
-        new_node.prev = b4_node
+        prev.next = node
+        node.prev = prev
 
-        new_node.next = after_node
-        after_node.prev = new_node
+        node.next = next_node
+        next_node.prev = node
 
         self.length += 1
         return True
@@ -111,9 +111,9 @@ class DoublyLinkedList:
     def reverse(self):
         node = self.head
         while node != None:
-            next = node.next
+            next_node = node.next
             node.next = node.prev
-            node.prev = next
-            node = next
+            node.prev = next_node
+            node = next_node
         self.head, self.tail = self.tail, self.head
         return self
