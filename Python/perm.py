@@ -3,7 +3,7 @@ def perm(data):
         return [[]]
     li = []
     for index, value in enumerate(data):
-        for p in perm(data[:index] + data[index+1:]):
+        for p in perm(data[:index] + data[index + 1:]):
             li.append([value] + p or [[]])
     return li
 
