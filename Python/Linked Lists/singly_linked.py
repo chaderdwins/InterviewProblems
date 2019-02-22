@@ -82,9 +82,9 @@ class LinkedList:
             return self.addHead(data)
         node = Node(data)
         prev = self.get(index - 1)
-        temp = prev.next
+        current = prev.next
         prev.next = node
-        node.next = temp
+        node.next = current
         self.length += 1
         return True
 
@@ -95,28 +95,20 @@ class LinkedList:
             return self.removeHead()
         if index == self.length - 1:
             return self.pop()
-        prev_node = self.get(index - 1)
-        removed = prev_node.next
-        prev_node.next = removed.next
+        prev = self.get(index - 1)
+        current = prev.next
+        prev.next = current.next
         self.length -= 1
-        return removed
+        return current
 
     def reverse(self):
-        node = self.head
+        current = self.head
         self.head = self.tail
-        self.tail = node
+        self.tail = current
         prev = None
         for i in range(self.length):
-            next = node.next
-            node.next = prev
-            prev = node
-            node = next
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
         return self
-
-    def print(self):
-        li = ''
-        current = self.head
-        while current:
-            li = li + str(current.data) + '->'
-            current = current.next
-        return li
